@@ -7,15 +7,15 @@ async function load (url) {
 }
 
 async function getImageUrl (pagina, endereco) {
-  const $ = await load(`https://www.mangareader.net${endereco}`)
+  const $ = await load(`${process.env.SITE_URL}${endereco}`)
   const url = $('#img')[0].attribs.src
 
   return { pagina, url }
 }
 
 async function download (nome, capitulo) {
-  const $main = await load(`https://www.mangareader.net/${nome}`)
-  const $page = await load(`https://www.mangareader.net/${nome}/${capitulo}`)
+  const $main = await load(`${process.env.SITE_URL}/${nome}`)
+  const $page = await load(`${process.env.SITE_URL}/${nome}/${capitulo}`)
 
   const totalCapitulos = $main('#latestchapters > ul > li:nth-child(1) > a')
     .text()
